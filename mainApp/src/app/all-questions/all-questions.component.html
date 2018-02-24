@@ -1,0 +1,18 @@
+<h1>Hi {{currentUser.name}}!</h1>
+<a [routerLink]="['/new_question']">Add a Question</a>
+<a [routerLink]="">Logout</a><br>
+<span>Search:</span>
+<input type="text" name="serach">
+<table>
+  <tr id="header">
+    <th>Question</th>
+    <th>Answer</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let x of questions">
+    <td>{{x.questionContent}}</td>
+    <td>{{x.answers.length}}</td>
+    <td><a [routerLink]="['/question/', x._id]">Show</a>   <a [routerLink]="['/question/new_answer/', x._id]">Answer</a></td>
+  </tr>
+</table>
+

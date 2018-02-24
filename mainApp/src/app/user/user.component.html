@@ -1,0 +1,9 @@
+<h1>Q&A</h1>
+<span>Name:</span>
+<form (submit)="logInUser()">
+  <input type="text" name="name" [(ngModel)]="newUser.name">
+  <input type="submit" value="Enter">
+</form>
+<p id="ptag" *ngFor="let error of errorMessages">
+  {{error}}
+</p>
