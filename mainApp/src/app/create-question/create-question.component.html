@@ -1,3 +1,15 @@
-<p>
-  create-question works!
+<a [routerLink]="['/all']">Home</a>
+<a [routerLink]="">Logout</a><br>
+<h1>New Question</h1>
+<form>
+    <span id="question">Question</span>
+    <textarea name="questionContent" id="questionContent
+    " cols="30" rows="10" [(ngModel)]="newQuestion.questionContent"></textarea><br>
+    <span id="description">Description (optional)</span>
+    <textarea name="questionDesc" id="questionDesc" cols="30" rows="10" [(ngModel)]="newQuestion.questionDesc"></textarea><br>
+    <button [routerLink]="['/all']" >Cancel</button> <button (click)="createQuestion()">Submit</button>
+</form>
+<p id="ptag" *ngFor="let error of errorMessages">
+  {{error}}
 </p>
+
