@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n    padding: 4px;\n}\n\n/* #link{\n    text-decoration: underline;\n    cursor: pointer;\n    color: #550691;\n} */\n\n#search_txt{\n    margin: 15px 0px;\n}\n\n", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\ntable, th, td {\n    border: 1px solid #eca341;\n    border-collapse: collapse;\n    padding: 10px;\n    color: white;\n}\n\n#search_txt{\n    margin: 15px 0px;\n}\n\nspan, a, p{\n    color: white;\n}\n\np{\n    display: inline;\n    margin-left: 332px;\n}\n\n#search_txt{\n    width: 300px;\n    margin-left: 10px;\n}", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-questions/all-questions.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\n  <h1>Hi {{currentUser.name}}!</h1>\n  <a [routerLink]=\"['/new_question']\">Add a question</a> | \n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <span>Search:</span>\n  <input id=\"search_txt\" type=\"text\" name=\"search\" (keyup)=\"search()\" [(ngModel)]=\"searchedString\">\n  <table>\n    <tr id=\"header\">\n      <th>Question</th>\n      <th>Answer</th>\n      <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let x of searchedQuestions\">\n      <td>{{x.questionContent}}</td>\n      <td>{{x.answers.length}}</td>\n      <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n    </tr>\n  </table>\n</div>\n\n\n\n"
+module.exports = "<div id=\"wrapper\">\n  <h1>Hi {{currentUser.name}}!</h1>\n  <a [routerLink]=\"['/new_question']\">Add a question</a><span> | </span>\n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <p>Search: </p>\n  <input id=\"search_txt\" type=\"text\" name=\"search\" (keyup)=\"search()\" [(ngModel)]=\"searchedString\">\n  <table>\n    <tr id=\"header\">\n      <th>Question</th>\n      <th>Answer</th>\n      <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let x of searchedQuestions\">\n      <td>{{x.questionContent}}</td>\n      <td>{{x.answers.length}}</td>\n      <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n    </tr>\n  </table>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -290,7 +290,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#yourAnswer{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#answerContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    width: 176px;\n    display: inline-block;\n    vertical-align: top;\n    line-height: 2.5em;\n    margin-right: 20px;\n}\n\n#answerDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh2{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}\n\n#cancel_btn{\n    margin-left: 427px;\n}\n\n#yourAnswer{\n    vertical-align: top;\n    margin-right: 105px;\n    color: white;\n}\n\n#answerContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    width: 176px;\n    display: inline-block;\n    vertical-align: top;\n    line-height: 2.5em;\n    margin-right: 20px;\n    color: white;\n}\n\n#answerDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}", ""]);
 
 // exports
 
@@ -303,7 +303,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-answer/create-answer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\n    <a [routerLink]=\"['/all']\">Home</a> |\n    <a [routerLink]=\"['/question',questionId]\">Go Back to Question</a> |\n    <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n    <h1>{{questionContent}}</h1>\n    <form>\n        <span id=\"yourAnswer\">Your Answer:</span>\n        <textarea name=\"answerContent\" id=\"answerContent\n        \" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerContent\"></textarea><br>\n        <p id=\"description\">Supporting details for your answer (optional):</p>\n        <textarea name=\"answerDesc\" id=\"answerDesc\" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerDesc\"></textarea><br>\n        <button [routerLink]=\"['/all']\" >Cancel</button> <button (click)=\"createAnswer()\">Submit</button>\n    </form>\n    <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n        {{error}}\n    </p>\n</div>\n\n"
+module.exports = "<div id=\"wrapper\">\n    <a [routerLink]=\"['/all']\">Home</a> <span> | </span>\n    <a [routerLink]=\"['/question',questionId]\">Go Back to Question</a> <span> | </span>\n    <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n    <h2>{{questionContent}}</h2>\n    <form>\n        <span id=\"yourAnswer\">Your Answer:</span>\n        <textarea name=\"answerContent\" id=\"answerContent\n        \" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerContent\"></textarea><br>\n        <p id=\"description\">Supporting details for your answer (optional):</p>\n        <textarea name=\"answerDesc\" id=\"answerDesc\" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerDesc\"></textarea><br>\n        <button id=\"cancel_btn\" [routerLink]=\"['/all']\" >Cancel</button>\n        <button (click)=\"createAnswer()\">Submit</button>\n    </form>\n    <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n        {{error}}\n    </p>\n</div>\n\n"
 
 /***/ }),
 
@@ -415,7 +415,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#question{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#questionContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    vertical-align: top;\n    line-height: 5em;\n    margin-right: 20px;\n}\n\n#questionDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}\n\n", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}\n\n#cancel_btn{\n    margin-left: 444px;\n}\n\n#question{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#questionContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    vertical-align: top;\n    line-height: 5em;\n    margin-right: 20px;\n}\n\n#questionDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}\n\n", ""]);
 
 // exports
 
@@ -428,7 +428,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-question/create-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\n  <a [routerLink]=\"['/all']\">Home</a> |\n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <h1>New Question</h1>\n  <form>\n      <span id=\"question\">Question:</span>\n      <textarea name=\"questionContent\" id=\"questionContent\n      \" cols=\"70\" rows=\"8\" [(ngModel)]=\"newQuestion.questionContent\"></textarea><br>\n      <span id=\"description\">Description (optional):</span>\n      <textarea name=\"questionDesc\" id=\"questionDesc\" cols=\"70\" rows=\"8\" [(ngModel)]=\"newQuestion.questionDesc\"></textarea><br>\n      <button [routerLink]=\"['/all']\" >Cancel</button> <button (click)=\"createQuestion()\">Submit</button>\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n\n\n"
+module.exports = "<div id=\"wrapper\">\n  <a [routerLink]=\"['/all']\">Home</a> <span>|</span>\n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <h1>New Question</h1>\n  <form>\n      <span id=\"question\">Question:</span>\n      <textarea name=\"questionContent\" id=\"questionContent\n      \" cols=\"78\" rows=\"8\" [(ngModel)]=\"newQuestion.questionContent\"></textarea><br>\n      <span id=\"description\">Description (optional):</span>\n      <textarea name=\"questionDesc\" id=\"questionDesc\" cols=\"78\" rows=\"8\" [(ngModel)]=\"newQuestion.questionDesc\"></textarea><br>\n      <button id=\"cancel_btn\" [routerLink]=\"['/all']\" >Cancel</button>\n      <button (click)=\"createQuestion()\">Submit</button>\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -739,7 +739,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n}\n\n#text_field{\n    margin-top: 15px;\n}\n\n#ptag{\n    color: red;\n}\n", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    height: 400px;\n    border: 1px solid black;\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\nspan{\n    color: white;\n}\n\n#text_field{\n    margin-top: 15px;\n    margin-bottom: 15px;\n    height: 19px;\n}\n\n#ptag{\n    color: red;\n}\n\nform[submit]{\n    color: white;\n}\n\n#submit{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}", ""]);
 
 // exports
 
@@ -752,7 +752,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" style=\"text-align:center\">\n  <h1>Q&A</h1>\n  <span>Please enter your name:</span>\n  <form (submit)=\"logInUser()\">\n    <input id=\"text_field\" type=\"text\" name=\"name\" [(ngModel)]=\"newUser.name\">\n    <input type=\"submit\" value=\"Enter\">\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n"
+module.exports = "<div id=\"wrapper\" style=\"text-align:center\">\n  <h1>Q&A</h1>\n  <span>Please enter your name:</span>\n  <form (submit)=\"logInUser()\">\n    <input id=\"text_field\" type=\"text\" name=\"name\" [(ngModel)]=\"newUser.name\"><br>\n    <input id=\"submit\" type=\"submit\" value=\"Enter\">\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n"
 
 /***/ }),
 

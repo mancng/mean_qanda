@@ -2,22 +2,35 @@
     width: 700px;
     border: 1px solid black;
     padding: 40px;
+    background-color: #36322b;
+}
+
+h1{
+    color: #eca341
 }
 
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #eca341;
     border-collapse: collapse;
-    padding: 4px;
+    padding: 10px;
+    color: white;
 }
-
-/* #link{
-    text-decoration: underline;
-    cursor: pointer;
-    color: #550691;
-} */
 
 
 #search_txt{
     margin: 15px 0px;
 }
 
+span, a, p{
+    color: white;
+}
+
+p{
+    display: inline;
+    margin-left: 332px;
+}
+
+#search_txt{
+    width: 300px;
+    margin-left: 10px;
+}
