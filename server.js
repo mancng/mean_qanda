@@ -32,11 +32,12 @@ var QuestionSchema = new mongoose.Schema({
         {
             answerContent: { type: String, required: true, minlength: 5 },
             answerDesc: { type: String },
-            votes: { type: Number, default: 0 },
+            likes: { type: Number, default: 0 },
             writer: { type: String }
         }
     ],
 });
+
 //Set models by passing them their respective Schemas
 mongoose.model('User', UserSchema);
 mongoose.model('Question', QuestionSchema);
@@ -46,7 +47,7 @@ var User = mongoose.model('User');
 var Question = mongoose.model('Question');
 mongoose.Promise = global.Promise;
 
-//Routes
+//ROUTES
 
 //Login or Create User:
 app.post('/api/users', function(req, res){
@@ -92,6 +93,16 @@ app.get('/api/users/current', function(req, res){
     }
 })
 
+//Remove current user from session
+app.get('/api/users/current/logout', function(req, res){
+    req.session.destroy(function(err){
+        if(err){
+            res.json(err);
+        } else {
+            res.json({message: "No error found"});
+        }
+    })
+})
 
 //Get all Questions
 app.get('/api/questions', function(req, res){
@@ -122,14 +133,16 @@ app.post('/api/questions', function(req, res){
 
 //Get Single Quesiton by ID
 app.get('/api/questions/:id', function(req, res){
-    Question.findOne({_id: req.params.id}, function(err, question){
-        if(err){
-            console.log("Error gett one Question", err);
-            res.json({message: "Error", error: err});
-        } else {
-            res.json(question);
+    Question.findOne({_id: req.params.id}).sort('answers.likes').exec(
+        function(err, question){
+            if(err){
+                console.log("Error gett one Question", err);
+                res.json({message: "Error", error: err});
+            } else {
+                res.json(question);
+            }
         }
-    })
+    )
 })
 
 //Add an answer by question ID
@@ -154,7 +167,7 @@ app.put('/api/write/:id/liked', function(req, res){
             for (i = 0; i < question.answers.length; i++){
                 if(question.answers[i]._id == String(req.body.answerId)) {
                     console.log("MATCHED")
-                    question.answers[i].votes++;
+                    question.answers[i].likes++;
                     question.save(function(err){
                         if(err){
                             res.json({message: "Error", error: err});
@@ -164,6 +177,18 @@ app.put('/api/write/:id/liked', function(req, res){
                     })
                 }
             }
+        }
+    })
+})
+
+//Delete question
+app.delete('/api/questions/:id', function(req, res){
+    Question.remove({_id: req.params.id}, function(err, question){
+        if(err){
+            console.log("Error deleting question from mongo", err);
+            res.json({message: "Error", error: err});
+        } else {
+            res.json({messag: "Successfully deleted"});
         }
     })
 })

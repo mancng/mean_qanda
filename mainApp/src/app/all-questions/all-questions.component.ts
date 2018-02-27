@@ -9,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class AllQuestionsComponent implements OnInit {
 
-  questions: any = [];
+  questions: any[] = [];
   currentUser: object = {name: ""};
   errorMessages: string[] = [];
+  searchedString: string;
+  searchedQuestions: any[] = [];
 
   constructor(private _httpService: HttpService, private _router: Router) { }
 
@@ -32,8 +34,31 @@ export class AllQuestionsComponent implements OnInit {
 
   getAllQuestionsFromServer(){
     let observable = this._httpService.getAllQuestions()
-    observable.subscribe(data => {
+    observable.subscribe((data:any) => {
       this.questions = data;
+      this.searchedQuestions = this.questions;
+    })
+  }
+
+  search(){
+    var self = this;
+    this.searchedQuestions = this.questions.filter(function(questionObj){
+      return questionObj.questionContent.toLowerCase().includes(self.searchedString.toLowerCase()) || questionObj.questionDesc.toLowerCase().includes(self.searchedString.toLowerCase());
+    })
+  }
+
+  logoutThruService(){
+    console.log("Logout clicked!");
+    this._httpService.logout()
+    .subscribe((responseData:any)=>{
+      this.errorMessages = [];
+      if(responseData.errors){
+        for(var key in responseData.errors){
+          this.errorMessages.push(responseData.errors[key].message);
+        }
+      } else {
+        this._router.navigate([''])
+      }
     })
   }
 

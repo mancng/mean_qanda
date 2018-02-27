@@ -1,3 +1,18 @@
-<p>
-  create-answer works!
-</p>
+<div id="wrapper">
+    <a [routerLink]="['/all']">Home</a>
+    <a [routerLink]="['/question',questionId]">Go Back to Question</a>
+    <a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
+    <h1>{{questionContent}}</h1>
+    <form>
+        <span id="yourAnswer">Your Answer:</span>
+        <textarea name="answerContent" id="answerContent
+        " cols="70" rows="8" [(ngModel)]="answerContent"></textarea><br>
+        <p id="description">Supporting details for your answer (optional):</p>
+        <textarea name="answerDesc" id="answerDesc" cols="70" rows="8" [(ngModel)]="answerDesc"></textarea><br>
+        <button [routerLink]="['/all']" >Cancel</button> <button (click)="createAnswer()">Submit</button>
+    </form>
+    <p id="ptag" *ngFor="let error of errorMessages">
+        {{error}}
+    </p>
+</div>
+

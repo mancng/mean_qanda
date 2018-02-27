@@ -1,13 +1,31 @@
+#wrapper{
+    width: 700px;
+    border: 1px solid black;
+    padding: 40px;
+    margin-top: 30px;
+}
+
 #question{
     vertical-align: top;
-    margin-right: 30px;
+    margin-right: 105px;
+}
+
+#questionContent{
+    margin-bottom: 20px;
 }
 
 #description{
     vertical-align: top;
+    line-height: 5em;
+    margin-right: 20px;
+}
 
+#questionDesc{
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 #ptag{
     color: red;
 }
+

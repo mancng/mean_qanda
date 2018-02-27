@@ -1,4 +1,23 @@
+#wrapper{
+    width: 700px;
+    border: 1px solid black;
+    padding: 40px;
+}
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
- }
+    padding: 4px;
+}
+
+/* #link{
+    text-decoration: underline;
+    cursor: pointer;
+    color: #550691;
+} */
+
+
+#search_txt{
+    margin: 15px 0px;
+}
+

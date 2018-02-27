@@ -34,12 +34,27 @@ export class CreateQuestionComponent implements OnInit {
     .subscribe((responseData:any)=>{
       console.log('responseData', responseData);
       this.errorMessages = [];
+      if(responseData.error){
+        for(var key in responseData.error.errors){
+          this.errorMessages.push(responseData.error.errors[key].message);
+        }
+      } else{
+          this._router.navigate(['/all']);
+      }
+    })
+  }
+
+  logoutThruService(){
+    console.log("Logout clicked!");
+    this._httpService.logout()
+    .subscribe((responseData:any)=>{
+      this.errorMessages = [];
       if(responseData.errors){
-        for(var key in responseData.message.errors){
+        for(var key in responseData.errors){
           this.errorMessages.push(responseData.errors[key].message);
         }
       } else {
-        this._router.navigate(['/all']);
+        this._router.navigate([''])
       }
     })
   }

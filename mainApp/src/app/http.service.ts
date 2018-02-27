@@ -12,7 +12,7 @@ export class HttpService {
   }
 
   getCurrentUser(){
-    return this._http.get('/api/users/current')
+    return this._http.get('/api/users/current');
   }
 
   addQuestion(questionObj){
@@ -38,8 +38,17 @@ export class HttpService {
     console.log("I'm going to add the like")
     console.log(questionId)
     console.log(answerIdObj)
-    return this._http.put(`api/write/${questionId}/liked`, answerIdObj)
+    return this._http.put(`api/write/${questionId}/liked`, answerIdObj);
   }
 
+  deleteQuestion(questionId){
+    console.log("I'm calling the server to delete")
+    return this._http.delete(`api/questions/${questionId}`);
+  }
+
+  logout(){
+    console.log("I'm calling the server to logout")
+    return this._http.get('/api/users/current/logout');
+  }
 
 }

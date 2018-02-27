@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "table, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n }\n", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n}\n\ntable, th, td {\n    border: 1px solid black;\n    border-collapse: collapse;\n    padding: 4px;\n}\n\n/* #link{\n    text-decoration: underline;\n    cursor: pointer;\n    color: #550691;\n} */\n\n#search_txt{\n    margin: 15px 0px;\n}\n\n", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-questions/all-questions.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Hi {{currentUser.name}}!</h1>\n<a [routerLink]=\"['/new_question']\">Add a Question</a>\n<a [routerLink]=\"\">Logout</a><br>\n<span>Search:</span>\n<input type=\"text\" name=\"serach\">\n<table>\n  <tr id=\"header\">\n    <th>Question</th>\n    <th>Answer</th>\n    <th>Action</th>\n  </tr>\n  <tr *ngFor=\"let x of questions\">\n    <td>{{x.questionContent}}</td>\n    <td>{{x.answers.length}}</td>\n    <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n  </tr>\n</table>\n\n"
+module.exports = "<div id=\"wrapper\">\n  <h1>Hi {{currentUser.name}}!</h1>\n  <a [routerLink]=\"['/new_question']\">Add a question</a> | \n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <span>Search:</span>\n  <input id=\"search_txt\" type=\"text\" name=\"search\" (keyup)=\"search()\" [(ngModel)]=\"searchedString\">\n  <table>\n    <tr id=\"header\">\n      <th>Question</th>\n      <th>Answer</th>\n      <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let x of searchedQuestions\">\n      <td>{{x.questionContent}}</td>\n      <td>{{x.answers.length}}</td>\n      <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n    </tr>\n  </table>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -67,6 +67,7 @@ var AllQuestionsComponent = /** @class */ (function () {
         this.questions = [];
         this.currentUser = { name: "" };
         this.errorMessages = [];
+        this.searchedQuestions = [];
     }
     AllQuestionsComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -89,6 +90,29 @@ var AllQuestionsComponent = /** @class */ (function () {
         var observable = this._httpService.getAllQuestions();
         observable.subscribe(function (data) {
             _this.questions = data;
+            _this.searchedQuestions = _this.questions;
+        });
+    };
+    AllQuestionsComponent.prototype.search = function () {
+        var self = this;
+        this.searchedQuestions = this.questions.filter(function (questionObj) {
+            return questionObj.questionContent.toLowerCase().includes(self.searchedString.toLowerCase()) || questionObj.questionDesc.toLowerCase().includes(self.searchedString.toLowerCase());
+        });
+    };
+    AllQuestionsComponent.prototype.logoutThruService = function () {
+        var _this = this;
+        console.log("Logout clicked!");
+        this._httpService.logout()
+            .subscribe(function (responseData) {
+            _this.errorMessages = [];
+            if (responseData.errors) {
+                for (var key in responseData.errors) {
+                    _this.errorMessages.push(responseData.errors[key].message);
+                }
+            }
+            else {
+                _this._router.navigate(['']);
+            }
         });
     };
     AllQuestionsComponent = __decorate([
@@ -266,7 +290,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#yourAnswer{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#answerContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    width: 176px;\n    display: inline-block;\n    vertical-align: top;\n    line-height: 2.5em;\n    margin-right: 20px;\n}\n\n#answerDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}", ""]);
 
 // exports
 
@@ -279,7 +303,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-answer/create-answer.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  create-answer works!\n</p>\n"
+module.exports = "<div id=\"wrapper\">\n    <a [routerLink]=\"['/all']\">Home</a>\n    <a [routerLink]=\"['/question',questionId]\">Go Back to Question</a>\n    <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n    <h1>{{questionContent}}</h1>\n    <form>\n        <span id=\"yourAnswer\">Your Answer:</span>\n        <textarea name=\"answerContent\" id=\"answerContent\n        \" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerContent\"></textarea><br>\n        <p id=\"description\">Supporting details for your answer (optional):</p>\n        <textarea name=\"answerDesc\" id=\"answerDesc\" cols=\"70\" rows=\"8\" [(ngModel)]=\"answerDesc\"></textarea><br>\n        <button [routerLink]=\"['/all']\" >Cancel</button> <button (click)=\"createAnswer()\">Submit</button>\n    </form>\n    <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n        {{error}}\n    </p>\n</div>\n\n"
 
 /***/ }),
 
@@ -299,10 +323,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var http_service_1 = __webpack_require__("../../../../../src/app/http.service.ts");
 var CreateAnswerComponent = /** @class */ (function () {
-    function CreateAnswerComponent() {
+    function CreateAnswerComponent(_route, _httpService, _router) {
+        this._route = _route;
+        this._httpService = _httpService;
+        this._router = _router;
+        this.currentUser = { name: "" };
+        this.questionToAnswer = { _id: "", questionContent: "", questionDesc: "", answers: [], writer: "" };
+        this.errorMessages = [];
     }
     CreateAnswerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._httpService.getCurrentUser()
+            .subscribe(function (responseData) {
+            console.log('responseData', responseData);
+            if (responseData.errors) {
+                _this._router.navigate(['']);
+                console.log(_this.currentUser);
+            }
+            else {
+                _this.currentUser = responseData;
+                console.log("i'm calling the service");
+                _this._route.paramMap.subscribe(function (params) {
+                    _this._httpService.getSingleQuestion(params.get('id'))
+                        .subscribe(function (responseData) {
+                        _this.questionToAnswer = responseData;
+                        _this.questionContent = _this.questionToAnswer.questionContent;
+                        _this.questionDesc = _this.questionToAnswer.questionDesc;
+                        _this.questionId = _this.questionToAnswer._id;
+                    });
+                });
+            }
+        });
+    };
+    CreateAnswerComponent.prototype.createAnswer = function () {
+        var _this = this;
+        this._httpService.addAnswerByQuestionId(this.questionId, { "answers": [{
+                    "answerContent": this.answerContent, "answerDesc": this.answerDesc, "writer": this.currentUser.name
+                }] })
+            .subscribe(function (responseData) {
+            console.log('responseData', responseData);
+            _this.errorMessages = [];
+            if (responseData.error) {
+                for (var key in responseData.error.errors) {
+                    _this.errorMessages.push(responseData.error.errors[key].message);
+                }
+            }
+            else {
+                _this._router.navigate(['/question/' + _this.questionId]);
+            }
+        });
+    };
+    CreateAnswerComponent.prototype.logoutThruService = function () {
+        var _this = this;
+        console.log("Logout clicked!");
+        this._httpService.logout()
+            .subscribe(function (responseData) {
+            _this.errorMessages = [];
+            if (responseData.errors) {
+                for (var key in responseData.errors) {
+                    _this.errorMessages.push(responseData.errors[key].message);
+                }
+            }
+            else {
+                _this._router.navigate(['']);
+            }
+        });
     };
     CreateAnswerComponent = __decorate([
         core_1.Component({
@@ -310,7 +398,7 @@ var CreateAnswerComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/create-answer/create-answer.component.html"),
             styles: [__webpack_require__("../../../../../src/app/create-answer/create-answer.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, http_service_1.HttpService, router_1.Router])
     ], CreateAnswerComponent);
     return CreateAnswerComponent;
 }());
@@ -327,7 +415,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#question{\n    vertical-align: top;\n    margin-right: 30px;\n}\n\n#description{\n    vertical-align: top;\n\n}\n\n#ptag{\n    color: red;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#question{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#questionContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    vertical-align: top;\n    line-height: 5em;\n    margin-right: 20px;\n}\n\n#questionDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}\n\n", ""]);
 
 // exports
 
@@ -340,7 +428,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/create-question/create-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<a [routerLink]=\"['/all']\">Home</a>\n<a [routerLink]=\"\">Logout</a><br>\n<h1>New Question</h1>\n<form>\n    <span id=\"question\">Question</span>\n    <textarea name=\"questionContent\" id=\"questionContent\n    \" cols=\"30\" rows=\"10\" [(ngModel)]=\"newQuestion.questionContent\"></textarea><br>\n    <span id=\"description\">Description (optional)</span>\n    <textarea name=\"questionDesc\" id=\"questionDesc\" cols=\"30\" rows=\"10\" [(ngModel)]=\"newQuestion.questionDesc\"></textarea><br>\n    <button [routerLink]=\"['/all']\" >Cancel</button> <button (click)=\"createQuestion()\">Submit</button>\n</form>\n<p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n  {{error}}\n</p>\n\n"
+module.exports = "<div id=\"wrapper\">\n  <a [routerLink]=\"['/all']\">Home</a> |\n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <h1>New Question</h1>\n  <form>\n      <span id=\"question\">Question:</span>\n      <textarea name=\"questionContent\" id=\"questionContent\n      \" cols=\"70\" rows=\"8\" [(ngModel)]=\"newQuestion.questionContent\"></textarea><br>\n      <span id=\"description\">Description (optional):</span>\n      <textarea name=\"questionDesc\" id=\"questionDesc\" cols=\"70\" rows=\"8\" [(ngModel)]=\"newQuestion.questionDesc\"></textarea><br>\n      <button [routerLink]=\"['/all']\" >Cancel</button> <button (click)=\"createQuestion()\">Submit</button>\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n\n\n"
 
 /***/ }),
 
@@ -391,13 +479,29 @@ var CreateQuestionComponent = /** @class */ (function () {
             .subscribe(function (responseData) {
             console.log('responseData', responseData);
             _this.errorMessages = [];
-            if (responseData.errors) {
-                for (var key in responseData.message.errors) {
-                    _this.errorMessages.push(responseData.errors[key].message);
+            if (responseData.error) {
+                for (var key in responseData.error.errors) {
+                    _this.errorMessages.push(responseData.error.errors[key].message);
                 }
             }
             else {
                 _this._router.navigate(['/all']);
+            }
+        });
+    };
+    CreateQuestionComponent.prototype.logoutThruService = function () {
+        var _this = this;
+        console.log("Logout clicked!");
+        this._httpService.logout()
+            .subscribe(function (responseData) {
+            _this.errorMessages = [];
+            if (responseData.errors) {
+                for (var key in responseData.errors) {
+                    _this.errorMessages.push(responseData.errors[key].message);
+                }
+            }
+            else {
+                _this._router.navigate(['']);
             }
         });
     };
@@ -465,6 +569,14 @@ var HttpService = /** @class */ (function () {
         console.log(answerIdObj);
         return this._http.put("api/write/" + questionId + "/liked", answerIdObj);
     };
+    HttpService.prototype.deleteQuestion = function (questionId) {
+        console.log("I'm calling the server to delete");
+        return this._http.delete("api/questions/" + questionId);
+    };
+    HttpService.prototype.logout = function () {
+        console.log("I'm calling the server to logout");
+        return this._http.get('/api/users/current/logout');
+    };
     HttpService = __decorate([
         core_1.Injectable(),
         __metadata("design:paramtypes", [http_1.HttpClient])
@@ -484,7 +596,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    /* border: 1px solid black; */\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#data{\n    margin-bottom: 20px;\n}\n\n#details_div{\n    display: inline-block;\n    width: 70%;\n    vertical-align: top;\n}\n\n#like_div{\n    display:inline-block;\n    width: 25%\n}\n\n#like_btn{\n    float: right;\n}\n\n.name{\n    font-style: bold;\n    color: blue;\n}\n\n.desc_txt{\n    font-size: 10pt;\n}", ""]);
 
 // exports
 
@@ -497,7 +609,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/single-question/single-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  single-question works!\n</p>\n"
+module.exports = "<app-all-questions>Loading....</app-all-questions>\n\n<div id=\"wrapper\" >\n  <a [routerLink]=\"['/all']\">Home</a> | \n  <a [routerLink]=\"['/question/new_answer/',questionId]\">Answer the question</a> | \n  <a href=\"javascript:void(0)\" (click)=\"deleteQuestion()\">Delete the question</a>\n  <h1>{{questionContent}}</h1>\n  <h4>{{questionDesc}}</h4>\n  <div id=\"data\" *ngFor=\"let y of showAnswers\">\n    <div id=\"details_div\">\n      <span class=\"name\">{{y.writer}}:</span><br>\n      <span>{{y.answerContent}}</span><br>\n      <span class=\"desc_txt\">{{y.answerDesc}}</span><br>\n    </div>\n    <div id=\"like_div\">\n      <span>{{y.likes}} likes</span>\n      <button id=\"like_btn\" (click)=\"liked(y._id)\">LIKE</button>\n    </div>\n  </div>\n</div>\n<p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n  {{error}}\n</p>"
 
 /***/ }),
 
@@ -517,10 +629,92 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var router_1 = __webpack_require__("../../../router/esm5/router.js");
+var http_service_1 = __webpack_require__("../../../../../src/app/http.service.ts");
 var SingleQuestionComponent = /** @class */ (function () {
-    function SingleQuestionComponent() {
+    function SingleQuestionComponent(_route, _httpService, _router) {
+        this._route = _route;
+        this._httpService = _httpService;
+        this._router = _router;
+        this.questionToAnswer = { _id: "", questionContent: "", questionDesc: "", answers: [] };
+        this.errorMessages = [];
+        this.currentUser = { name: "" };
+        this.showAnswers = [];
     }
     SingleQuestionComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._httpService.getCurrentUser()
+            .subscribe(function (responseData) {
+            console.log('responseData', responseData);
+            if (responseData.errors) {
+                _this._router.navigate(['']);
+                console.log(_this.currentUser);
+            }
+            else {
+                _this.currentUser = responseData;
+                console.log("i'm calling the service");
+                _this.getData();
+            }
+        });
+    };
+    SingleQuestionComponent.prototype.getData = function () {
+        var _this = this;
+        this._route.paramMap.subscribe(function (params) {
+            _this._httpService.getSingleQuestion(params.get('id'))
+                .subscribe(function (responseData) {
+                console.log(responseData);
+                _this.questionToAnswer = responseData;
+                _this.questionContent = _this.questionToAnswer.questionContent;
+                _this.questionDesc = _this.questionToAnswer.questionDesc;
+                _this.showAnswers = _this.questionToAnswer.answers;
+                _this.questionId = _this.questionToAnswer._id;
+                console.log(_this.showAnswers);
+                //To sort order by number of like at the top
+                _this.questionToAnswer.answers = _this.questionToAnswer.answers.sort(function (a, b) {
+                    return b.likes - a.likes;
+                });
+            });
+        });
+    };
+    SingleQuestionComponent.prototype.liked = function (id) {
+        var _this = this;
+        var answerIdObj = { answerId: id };
+        console.log("questionid: " + this.questionId);
+        console.log(answerIdObj);
+        this._httpService.incrementLike(this.questionId, answerIdObj)
+            .subscribe(function (responseData) {
+            _this.errorMessages = [];
+            if (responseData.errors) {
+                for (var key in responseData.errors) {
+                    _this.errorMessages.push(responseData.errors[key].message);
+                }
+            }
+            else {
+                _this.getData();
+            }
+        });
+    };
+    SingleQuestionComponent.prototype.deleteQuestion = function () {
+        var _this = this;
+        console.log("I'm going to delete the question");
+        console.log(this.questionId);
+        this._httpService.deleteQuestion(this.questionId)
+            .subscribe(function (responseData) {
+            console.log('responseDta', responseData);
+            _this.errorMessages = [];
+            if (responseData.errors) {
+                for (var key in responseData.errors) {
+                    _this.errorMessages.push(responseData.errors[key].message);
+                }
+            }
+            else {
+                console.log("Are you here?");
+                _this._router.navigate(['/all']);
+            }
+        });
+    };
+    SingleQuestionComponent.prototype.testing = function () {
+        console.log("Testing clicked.");
     };
     SingleQuestionComponent = __decorate([
         core_1.Component({
@@ -528,7 +722,7 @@ var SingleQuestionComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../src/app/single-question/single-question.component.html"),
             styles: [__webpack_require__("../../../../../src/app/single-question/single-question.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.ActivatedRoute, http_service_1.HttpService, router_1.Router])
     ], SingleQuestionComponent);
     return SingleQuestionComponent;
 }());
@@ -545,7 +739,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#ptag{\n    color: red;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n}\n\n#text_field{\n    margin-top: 15px;\n}\n\n#ptag{\n    color: red;\n}\n", ""]);
 
 // exports
 
@@ -558,7 +752,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/user/user.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Q&A</h1>\n<span>Name:</span>\n<form (submit)=\"logInUser()\">\n  <input type=\"text\" name=\"name\" [(ngModel)]=\"newUser.name\">\n  <input type=\"submit\" value=\"Enter\">\n</form>\n<p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n  {{error}}\n</p>"
+module.exports = "<div id=\"wrapper\" style=\"text-align:center\">\n  <h1>Q&A</h1>\n  <span>Please enter your name:</span>\n  <form (submit)=\"logInUser()\">\n    <input id=\"text_field\" type=\"text\" name=\"name\" [(ngModel)]=\"newUser.name\">\n    <input type=\"submit\" value=\"Enter\">\n  </form>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n"
 
 /***/ }),
 

@@ -1,9 +1,11 @@
-<h1>Q&A</h1>
-<span>Name:</span>
-<form (submit)="logInUser()">
-  <input type="text" name="name" [(ngModel)]="newUser.name">
-  <input type="submit" value="Enter">
-</form>
-<p id="ptag" *ngFor="let error of errorMessages">
-  {{error}}
-</p>
+<div id="wrapper" style="text-align:center">
+  <h1>Q&A</h1>
+  <span>Please enter your name:</span>
+  <form (submit)="logInUser()">
+    <input id="text_field" type="text" name="name" [(ngModel)]="newUser.name">
+    <input type="submit" value="Enter">
+  </form>
+  <p id="ptag" *ngFor="let error of errorMessages">
+    {{error}}
+  </p>
+</div>
