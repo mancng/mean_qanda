@@ -7,7 +7,7 @@
 }
 
 h1{
-    color: #eca341
+    color: #eca341;
 }
 
 span{
@@ -34,5 +34,5 @@ form[submit]{
     font-size: 11pt;
     border-radius: 5px;
     margin-right: 10px;
-    color: white;
+    color: #36322b;
 }

@@ -2,11 +2,23 @@
     width: 700px;
     /* border: 1px solid black; */
     padding: 40px;
-    margin-top: 30px;
+    background-color: #36322b;
+}
+
+h1{
+    color: #eca341;
+}
+
+h4{
+    color: #b0afac;
 }
 
 #data{
     margin-bottom: 20px;
+}
+
+span, a, p{
+    color: white;
 }
 
 #details_div{
@@ -22,11 +34,17 @@
 
 #like_btn{
     float: right;
+    background: #b0afac;
+    width: 100px;
+    font-size: 11pt;
+    border-radius: 5px;
+    margin-right: 10px;
+    color: #36322b;
 }
 
 .name{
     font-style: bold;
-    color: blue;
+    color: #eca341;
 }
 
 .desc_txt{

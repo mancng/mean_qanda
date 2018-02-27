@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\ntable, th, td {\n    border: 1px solid #eca341;\n    border-collapse: collapse;\n    padding: 10px;\n    color: white;\n}\n\n#search_txt{\n    margin: 15px 0px;\n}\n\nspan, a, p{\n    color: white;\n}\n\np{\n    display: inline;\n    margin-left: 332px;\n}\n\n#search_txt{\n    width: 300px;\n    margin-left: 10px;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    /* border: 1px solid black; */\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\ntable, th, td {\n    border: 1px solid #eca341;\n    border-collapse: collapse;\n    padding: 10px;\n    color: white;\n    font-size: 12pt;\n}\n\n#search_txt{\n    margin: 15px 0px;\n}\n\nspan, a, p{\n    color: white;\n}\n\np{\n    display: inline;\n    margin-left: 332px;\n}\n\n#search_txt{\n    width: 300px;\n    margin-left: 10px;\n}", ""]);
 
 // exports
 
@@ -193,7 +193,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div style=\"text-align:center\"> -->\n\n<router-outlet></router-outlet>\n"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n<!-- <div style=\"text-align:center\"> -->\n\n<router-outlet></router-outlet>\n\n\n"
 
 /***/ }),
 
@@ -290,7 +290,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh2{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}\n\n#cancel_btn{\n    margin-left: 427px;\n}\n\n#yourAnswer{\n    vertical-align: top;\n    margin-right: 105px;\n    color: white;\n}\n\n#answerContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    width: 176px;\n    display: inline-block;\n    vertical-align: top;\n    line-height: 2.5em;\n    margin-right: 20px;\n    color: white;\n}\n\n#answerDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh2{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: #36322b;\n}\n\n#cancel_btn{\n    margin-left: 427px;\n}\n\n#yourAnswer{\n    vertical-align: top;\n    margin-right: 105px;\n    color: white;\n}\n\n#answerContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    width: 176px;\n    display: inline-block;\n    vertical-align: top;\n    line-height: 2.5em;\n    margin-right: 20px;\n    color: white;\n}\n\n#answerDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}", ""]);
 
 // exports
 
@@ -415,7 +415,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}\n\n#cancel_btn{\n    margin-left: 444px;\n}\n\n#question{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#questionContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    vertical-align: top;\n    line-height: 5em;\n    margin-right: 20px;\n}\n\n#questionDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}\n\n", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    border: 1px solid black;\n    padding: 40px;\n    margin-top: 30px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341;\n}\n\nspan, a{\n    color: white;\n}\n\nbutton{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: #36322b;\n}\n\n#cancel_btn{\n    margin-left: 444px;\n}\n\n#question{\n    vertical-align: top;\n    margin-right: 105px;\n}\n\n#questionContent{\n    margin-bottom: 20px;\n}\n\n#description{\n    vertical-align: top;\n    line-height: 5em;\n    margin-right: 20px;\n}\n\n#questionDesc{\n    margin-top: 30px;\n    margin-bottom: 20px;\n}\n\n#ptag{\n    color: red;\n}\n\n", ""]);
 
 // exports
 
@@ -596,7 +596,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    /* border: 1px solid black; */\n    padding: 40px;\n    margin-top: 30px;\n}\n\n#data{\n    margin-bottom: 20px;\n}\n\n#details_div{\n    display: inline-block;\n    width: 70%;\n    vertical-align: top;\n}\n\n#like_div{\n    display:inline-block;\n    width: 25%\n}\n\n#like_btn{\n    float: right;\n}\n\n.name{\n    font-style: bold;\n    color: blue;\n}\n\n.desc_txt{\n    font-size: 10pt;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    /* border: 1px solid black; */\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341;\n}\n\nh4{\n    color: #b0afac;\n}\n\n#data{\n    margin-bottom: 20px;\n}\n\nspan, a, p{\n    color: white;\n}\n\n#details_div{\n    display: inline-block;\n    width: 70%;\n    vertical-align: top;\n}\n\n#like_div{\n    display:inline-block;\n    width: 25%\n}\n\n#like_btn{\n    float: right;\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: #36322b;\n}\n\n.name{\n    font-style: bold;\n    color: #eca341;\n}\n\n.desc_txt{\n    font-size: 10pt;\n}", ""]);
 
 // exports
 
@@ -609,7 +609,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/single-question/single-question.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-all-questions>Loading....</app-all-questions>\n\n<div id=\"wrapper\" >\n  <a [routerLink]=\"['/all']\">Home</a> | \n  <a [routerLink]=\"['/question/new_answer/',questionId]\">Answer the question</a> | \n  <a href=\"javascript:void(0)\" (click)=\"deleteQuestion()\">Delete the question</a>\n  <h1>{{questionContent}}</h1>\n  <h4>{{questionDesc}}</h4>\n  <div id=\"data\" *ngFor=\"let y of showAnswers\">\n    <div id=\"details_div\">\n      <span class=\"name\">{{y.writer}}:</span><br>\n      <span>{{y.answerContent}}</span><br>\n      <span class=\"desc_txt\">{{y.answerDesc}}</span><br>\n  </div>\n    <div id=\"like_div\">\n      <span>{{y.likes}} likes</span>\n      <button id=\"like_btn\" (click)=\"liked(y._id)\">LIKE</button>\n    </div>\n  </div>\n</div>\n<p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n  {{error}}\n</p>"
+module.exports = "<div id=\"full\" fxLayout=\"column\">\n  <!-- <div> -->\n    <app-all-questions>Loading....</app-all-questions>\n  <!-- </div> -->\n  <div id=\"wrapper\" >\n    <a [routerLink]=\"['/all']\">Home</a> | \n    <a [routerLink]=\"['/question/new_answer/',questionId]\">Answer the question</a> | \n    <a href=\"javascript:void(0)\" (click)=\"deleteQuestion()\">Delete the question</a>\n    <h1>{{questionContent}}</h1>\n    <h4>{{questionDesc}}</h4>\n    <div id=\"data\" *ngFor=\"let y of showAnswers\">\n      <div id=\"details_div\">\n        <span class=\"name\">{{y.writer}}:</span><br>\n        <span>{{y.answerContent}}</span><br>\n        <span class=\"desc_txt\">{{y.answerDesc}}</span><br>\n    </div>\n      <div id=\"like_div\">\n        <span>{{y.likes}} likes</span>\n        <button id=\"like_btn\" (click)=\"liked(y._id)\">LIKE</button>\n      </div>\n    </div>\n  </div>\n  <p id=\"ptag\" *ngFor=\"let error of errorMessages\">\n    {{error}}\n  </p>\n</div>\n\n\n\n"
 
 /***/ }),
 
@@ -739,7 +739,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    height: 400px;\n    border: 1px solid black;\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\nspan{\n    color: white;\n}\n\n#text_field{\n    margin-top: 15px;\n    margin-bottom: 15px;\n    height: 19px;\n}\n\n#ptag{\n    color: red;\n}\n\nform[submit]{\n    color: white;\n}\n\n#submit{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: white;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    width: 700px;\n    height: 400px;\n    border: 1px solid black;\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341;\n}\n\nspan{\n    color: white;\n}\n\n#text_field{\n    margin-top: 15px;\n    margin-bottom: 15px;\n    height: 19px;\n}\n\n#ptag{\n    color: red;\n}\n\nform[submit]{\n    color: white;\n}\n\n#submit{\n    background: #b0afac;\n    width: 100px;\n    font-size: 11pt;\n    border-radius: 5px;\n    margin-right: 10px;\n    color: #36322b;\n}", ""]);
 
 // exports
 

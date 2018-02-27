@@ -1,23 +1,29 @@
-<app-all-questions>Loading....</app-all-questions>
-
-<div id="wrapper" >
-  <a [routerLink]="['/all']">Home</a> | 
-  <a [routerLink]="['/question/new_answer/',questionId]">Answer the question</a> | 
-  <a href="javascript:void(0)" (click)="deleteQuestion()">Delete the question</a>
-  <h1>{{questionContent}}</h1>
-  <h4>{{questionDesc}}</h4>
-  <div id="data" *ngFor="let y of showAnswers">
-    <div id="details_div">
-      <span class="name">{{y.writer}}:</span><br>
-      <span>{{y.answerContent}}</span><br>
-      <span class="desc_txt">{{y.answerDesc}}</span><br>
-  </div>
-    <div id="like_div">
-      <span>{{y.likes}} likes</span>
-      <button id="like_btn" (click)="liked(y._id)">LIKE</button>
+<div id="full" fxLayout="column">
+  <!-- <div> -->
+    <app-all-questions>Loading....</app-all-questions>
+  <!-- </div> -->
+  <div id="wrapper" >
+    <a [routerLink]="['/all']">Home</a> | 
+    <a [routerLink]="['/question/new_answer/',questionId]">Answer the question</a> | 
+    <a href="javascript:void(0)" (click)="deleteQuestion()">Delete the question</a>
+    <h1>{{questionContent}}</h1>
+    <h4>{{questionDesc}}</h4>
+    <div id="data" *ngFor="let y of showAnswers">
+      <div id="details_div">
+        <span class="name">{{y.writer}}:</span><br>
+        <span>{{y.answerContent}}</span><br>
+        <span class="desc_txt">{{y.answerDesc}}</span><br>
+    </div>
+      <div id="like_div">
+        <span>{{y.likes}} likes</span>
+        <button id="like_btn" (click)="liked(y._id)">LIKE</button>
+      </div>
     </div>
   </div>
+  <p id="ptag" *ngFor="let error of errorMessages">
+    {{error}}
+  </p>
 </div>
-<p id="ptag" *ngFor="let error of errorMessages">
-  {{error}}
-</p>
+
+
+
