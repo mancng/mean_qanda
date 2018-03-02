@@ -34,8 +34,9 @@ export class AllQuestionsComponent implements OnInit {
 
   getAllQuestionsFromServer(){
     let observable = this._httpService.getAllQuestions()
-    observable.subscribe((data:any) => {
-      this.questions = data;
+    observable.subscribe((responseData:any)=>{
+      this.questions = responseData.questions;
+      console.log(this.questions);
       this.searchedQuestions = this.questions;
     })
   }

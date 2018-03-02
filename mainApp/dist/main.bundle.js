@@ -88,8 +88,9 @@ var AllQuestionsComponent = /** @class */ (function () {
     AllQuestionsComponent.prototype.getAllQuestionsFromServer = function () {
         var _this = this;
         var observable = this._httpService.getAllQuestions();
-        observable.subscribe(function (data) {
-            _this.questions = data;
+        observable.subscribe(function (responseData) {
+            _this.questions = responseData.questions;
+            console.log(_this.questions);
             _this.searchedQuestions = _this.questions;
         });
     };

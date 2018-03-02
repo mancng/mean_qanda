@@ -97,7 +97,7 @@ app.get('/api/users/current', function(req, res){
 app.get('/api/users/current/logout', function(req, res){
     req.session.destroy(function(err){
         if(err){
-            res.json(err);
+            res.json({message: err});
         } else {
             res.json({message: "No error found"});
         }
@@ -111,7 +111,7 @@ app.get('/api/questions', function(req, res){
             console.log("Error getting all Questions", err);
             res.json({message: "Error", error: err});
         } else {
-            res.json(question);
+            res.json({questions: question});
         }
     })
 })
@@ -188,7 +188,7 @@ app.delete('/api/questions/:id', function(req, res){
             console.log("Error deleting question from mongo", err);
             res.json({message: "Error", error: err});
         } else {
-            res.json({messag: "Successfully deleted"});
+            res.json({message: "Successfully deleted"});
         }
     })
 })
