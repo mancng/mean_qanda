@@ -19,7 +19,7 @@ module.exports = function(app){
 
     //Route all other routes to home
     app.all('*', (req, res, next) => {
-        res.sendFile(path.resolve( __dirname + '/mainApp/dist/index.html'));
+        res.sendFile(path.resolve( __dirname + '/../../mainApp/dist/index.html'));
     }) 
 
 }
