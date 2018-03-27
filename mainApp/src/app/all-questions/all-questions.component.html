@@ -1,22 +1,28 @@
-<div id="wrapper">
-  <h1>Hi {{currentUser.name}}!</h1>
-  <a [routerLink]="['/new_question']">Add a question</a><span> | </span>
-  <a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
-  <p>Search: </p>
-  <input id="search_txt" type="text" name="search" (keyup)="search()" [(ngModel)]="searchedString">
-  <table>
-    <tr id="header">
-      <th>Question</th>
-      <th>Answer</th>
-      <th>Action</th>
-    </tr>
-    <tr *ngFor="let x of searchedQuestions">
-      <td>{{x.questionContent}}</td>
-      <td>{{x.answers.length}}</td>
-      <td><a [routerLink]="['/question/', x._id]">Show</a>   <a [routerLink]="['/question/new_answer/', x._id]">Answer</a></td>
-    </tr>
-  </table>
+<div id="wrapper" class="containerX">
+  <div fxLayout="column" fxLayoutGap="10px">
+    <h1>Hi {{currentUser.name}}!</h1>
+    <div fxLayout="row" fxLayout.xs="column">
+      <div fxFlex="100%">
+        <a [routerLink]="['/new_question']">Add a question</a><span> | </span><a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
+      </div>
+      <div fxLayout="row" fxLayout.xs="column"  fxLayoutGap="10px" fxFlexAlign="center">
+        <span>Search: </span>
+        <input id="search_txt" type="text" name="search" (keyup)="search()" [(ngModel)]="searchedString">
+      </div>
+    </div>
+    <div fxFlex="100%">
+      <table>
+        <tr id="header">
+          <th>Question</th>
+          <th>Answer</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let x of searchedQuestions">
+          <td>{{x.questionContent}}</td>
+          <td>{{x.answers.length}}</td>
+          <td><a [routerLink]="['/question/', x._id]">Show</a>   <a [routerLink]="['/question/new_answer/', x._id]">Answer</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
-
-
-

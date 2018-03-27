@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  isMobile(){ return false; };
+  invisibleOnDesktop(){ return true; };
 }

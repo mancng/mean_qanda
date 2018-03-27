@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "#wrapper{\n    width: 700px;\n    /* border: 1px solid black; */\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\ntable, th, td {\n    border: 1px solid #eca341;\n    border-collapse: collapse;\n    padding: 10px;\n    color: white;\n    font-size: 12pt;\n}\n\n#search_txt{\n    margin: 15px 0px;\n}\n\nspan, a, p{\n    color: white;\n}\n\np{\n    display: inline;\n    margin-left: 332px;\n}\n\n#search_txt{\n    width: 300px;\n    margin-left: 10px;\n}", ""]);
+exports.push([module.i, "#wrapper{\n    /* width: 700px; */\n    /* border: 1px solid black; */\n    padding: 40px;\n    background-color: #36322b;\n}\n\nh1{\n    color: #eca341\n}\n\ntable, th, td {\n    border: 1px solid #eca341;\n    border-collapse: collapse;\n    padding: 10px;\n    color: white;\n    font-size: 12pt;\n}\n\n/* #search_txt{\n    margin: 15px 0px;\n} */\n\nspan, a, p{\n    color: white;\n}\n\nspan{\n    margin-top: 5px;\n}\n\n#search_txt{\n    width: 298px;\n    height: 20px;\n    /* margin-left: 10px; */\n}\n\n.item-1{\n    background-color: blue;\n}\n\n.item-2{\n    background-color: green;\n}\n\n.item-3{\n    background-color: yellow;\n}", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-questions/all-questions.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\">\n  <h1>Hi {{currentUser.name}}!</h1>\n  <a [routerLink]=\"['/new_question']\">Add a question</a><span> | </span>\n  <a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n  <p>Search: </p>\n  <input id=\"search_txt\" type=\"text\" name=\"search\" (keyup)=\"search()\" [(ngModel)]=\"searchedString\">\n  <table>\n    <tr id=\"header\">\n      <th>Question</th>\n      <th>Answer</th>\n      <th>Action</th>\n    </tr>\n    <tr *ngFor=\"let x of searchedQuestions\">\n      <td>{{x.questionContent}}</td>\n      <td>{{x.answers.length}}</td>\n      <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n    </tr>\n  </table>\n</div>\n\n\n\n"
+module.exports = "<div id=\"wrapper\" class=\"containerX\">\n  <div fxLayout=\"column\" fxLayoutGap=\"10px\">\n    <h1>Hi {{currentUser.name}}!</h1>\n    <div fxLayout=\"row\" fxLayout.xs=\"column\">\n      <div fxFlex=\"100%\">\n        <a [routerLink]=\"['/new_question']\">Add a question</a><span> | </span><a href=\"javascript:void(0)\" (click)=\"logoutThruService()\">Logout</a><br>\n      </div>\n      <div fxLayout=\"row\" fxLayout.xs=\"column\"  fxLayoutGap=\"10px\" fxFlexAlign=\"center\">\n        <span>Search: </span>\n        <input id=\"search_txt\" type=\"text\" name=\"search\" (keyup)=\"search()\" [(ngModel)]=\"searchedString\">\n      </div>\n    </div>\n    <div fxFlex=\"100%\">\n      <table>\n        <tr id=\"header\">\n          <th>Question</th>\n          <th>Answer</th>\n          <th>Action</th>\n        </tr>\n        <tr *ngFor=\"let x of searchedQuestions\">\n          <td>{{x.questionContent}}</td>\n          <td>{{x.answers.length}}</td>\n          <td><a [routerLink]=\"['/question/', x._id]\">Show</a>   <a [routerLink]=\"['/question/new_answer/', x._id]\">Answer</a></td>\n        </tr>\n      </table>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -215,6 +215,10 @@ var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.title = 'app';
     }
+    AppComponent.prototype.isMobile = function () { return false; };
+    ;
+    AppComponent.prototype.invisibleOnDesktop = function () { return true; };
+    ;
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
@@ -243,6 +247,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 var core_1 = __webpack_require__("../../../core/esm5/core.js");
+var flex_layout_1 = __webpack_require__("../../../flex-layout/esm5/flex-layout.es5.js");
 var app_routing_module_1 = __webpack_require__("../../../../../src/app/app-routing.module.ts");
 var forms_1 = __webpack_require__("../../../forms/esm5/forms.js");
 var http_service_1 = __webpack_require__("../../../../../src/app/http.service.ts");
@@ -268,6 +273,7 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 platform_browser_1.BrowserModule,
+                flex_layout_1.FlexLayoutModule,
                 app_routing_module_1.AppRoutingModule,
                 forms_1.FormsModule,
                 http_1.HttpClientModule

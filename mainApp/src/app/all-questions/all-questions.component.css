@@ -1,5 +1,5 @@
 #wrapper{
-    width: 700px;
+    /* width: 700px; */
     /* border: 1px solid black; */
     padding: 40px;
     background-color: #36322b;
@@ -18,20 +18,32 @@ table, th, td {
 }
 
 
-#search_txt{
+/* #search_txt{
     margin: 15px 0px;
-}
+} */
 
 span, a, p{
     color: white;
 }
 
-p{
-    display: inline;
-    margin-left: 332px;
+span{
+    margin-top: 5px;
 }
 
 #search_txt{
-    width: 300px;
-    margin-left: 10px;
+    width: 298px;
+    height: 20px;
+    /* margin-left: 10px; */
+}
+
+.item-1{
+    background-color: blue;
+}
+
+.item-2{
+    background-color: green;
+}
+
+.item-3{
+    background-color: yellow;
 }
