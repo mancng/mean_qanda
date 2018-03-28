@@ -5,7 +5,7 @@
       <div fxFlex="100%">
         <a [routerLink]="['/new_question']">Add a question</a><span> | </span><a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
       </div>
-      <div fxLayout="row" fxLayout.xs="column"  fxLayoutGap="10px" fxFlexAlign="center">
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlexAlign="left">
         <span>Search: </span>
         <input id="search_txt" type="text" name="search" (keyup)="search()" [(ngModel)]="searchedString">
       </div>
