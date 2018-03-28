@@ -1,8 +1,7 @@
 #wrapper{
-    width: 700px;
-    height: 400px;
+    height: 100vh;
     border: 1px solid black;
-    padding: 40px;
+    padding: 100px 40px 40px 40px;
     background-color: #36322b;
 }
 

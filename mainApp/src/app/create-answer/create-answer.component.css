@@ -1,7 +1,6 @@
 #wrapper{
-    width: 700px;
-    border: 1px solid black;
     padding: 40px;
+    height: 100vh;
     margin-top: 30px;
     background-color: #36322b;
 }
@@ -19,38 +18,15 @@ button{
     width: 100px;
     font-size: 11pt;
     border-radius: 5px;
-    margin-right: 10px;
     color: #36322b;
 }
 
-#cancel_btn{
-    margin-left: 427px;
-}
-
-#yourAnswer{
-    vertical-align: top;
-    margin-right: 105px;
-    color: white;
-}
-
-#answerContent{
-    margin-bottom: 20px;
-}
-
-#description{
-    width: 176px;
-    display: inline-block;
-    vertical-align: top;
-    line-height: 2.5em;
-    margin-right: 20px;
-    color: white;
-}
-
-#answerDesc{
-    margin-top: 30px;
-    margin-bottom: 20px;
+#btns{
+    float: right;
+    margin-bottom: 30px;
 }
 
 #ptag{
     color: red;
+    margin-top: 30px;
 }

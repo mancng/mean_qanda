@@ -1,19 +1,31 @@
-<div id="wrapper">
-    <a [routerLink]="['/all']">Home</a> <span> | </span>
-    <a [routerLink]="['/question',questionId]">Go Back to Question</a> <span> | </span>
-    <a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
-    <h2>{{questionContent}}</h2>
-    <form>
-        <span id="yourAnswer">Your Answer:</span>
-        <textarea name="answerContent" id="answerContent
-        " cols="70" rows="8" [(ngModel)]="answerContent"></textarea><br>
-        <p id="description">Supporting details for your answer (optional):</p>
-        <textarea name="answerDesc" id="answerDesc" cols="70" rows="8" [(ngModel)]="answerDesc"></textarea><br>
-        <button id="cancel_btn" [routerLink]="['/all']" >Cancel</button>
-        <button (click)="createAnswer()">Submit</button>
-    </form>
-    <p id="ptag" *ngFor="let error of errorMessages">
-        {{error}}
-    </p>
+<div id="wrapper" class="conatinerX">
+    <div fxLayout="column" fxLayoutGap="10px">
+        <div fxLayout="row" fxLayoutGap="5px">
+            <a [routerLink]="['/all']">Home</a> <span> | </span>
+            <a [routerLink]="['/question',questionId]">Go Back to Question</a> <span> | </span>
+            <a href="javascript:void(0)" (click)="logoutThruService()">Logout</a><br>
+        </div>
+        <div fxLayout="column">
+            <h2>{{questionContent}}</h2>
+            <div fxLayout="column" fxLayoutGap="10px">
+                <form>
+                    <div fxLayout="column" fxLayoutGap="10px">
+                        <span id="yourAnswer">Your Answer:</span>
+                        <textarea name="answerContent" id="answerContent
+                        " cols="70" rows="8" [(ngModel)]="answerContent"></textarea><br>
+                        <span id="description">Supporting details for your answer (optional):</span>
+                        <textarea name="answerDesc" id="answerDesc" cols="70" rows="8" [(ngModel)]="answerDesc"></textarea><br>
+                    </div>
+                    <div id="btns" fxLayout="row" fxLayoutGap="10px">
+                        <button id="cancel_btn" [routerLink]="['/all']" >Cancel</button>
+                        <button (click)="createAnswer()">Submit</button>
+                    </div>
+                    <p id="ptag" *ngFor="let error of errorMessages">
+                        {{error}}
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 

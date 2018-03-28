@@ -1,7 +1,6 @@
 #wrapper{
-    width: 700px;
-    /* border: 1px solid black; */
     padding: 40px;
+    height: 100vh;
     background-color: #36322b;
 }
 
@@ -23,30 +22,31 @@ span, a, p{
 
 #details_div{
     display: inline-block;
-    width: 70%;
+    width: 80%;
     vertical-align: top;
 }
 
 #like_div{
     display:inline-block;
-    width: 25%
 }
 
 #like_btn{
-    float: right;
     background: #b0afac;
     width: 100px;
+    height: 25px;
     font-size: 11pt;
     border-radius: 5px;
-    margin-right: 10px;
     color: #36322b;
 }
 
 .name{
     font-style: bold;
+    font-size: 14pt;
     color: #eca341;
+    text-decoration: underline;
 }
 
 .desc_txt{
     font-size: 10pt;
+    font-style: italic;
 }
